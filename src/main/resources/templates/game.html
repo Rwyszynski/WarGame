@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gra</title>
+</head>
+<body>
+<h1>Gra - Gracz: <span th:text="${player}">PLAYER</span></h1>
+
+<table>
+    <tr>
+        <th>ID</th><th>Typ</th><th>Pozycja</th><th>Status</th>
+    </tr>
+    <tr th:each="unit : ${units}">
+        <td th:text="${unit.id}"></td>
+        <td th:text="${unit.type}"></td>
+        <td th:text="${unit.x + ',' + unit.y}"></td>
+        <td th:text="${unit.status}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -6,6 +6,7 @@ import com.kodilla.wargame.domain.Color;
 import com.kodilla.wargame.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,15 @@ public class GameController {
     }
 
     @GetMapping("/")
-    public String index() {
-        return "index";
+    public String choosePlayerForm() {
+        return "choose-player";
+    }
+
+    @PostMapping("/game")
+    public String showGame(@RequestParam("player") Color player, Model model) {
+        List<UnitDto> units = gameService.getUnitsForPlayer(player);
+        model.addAttribute("units", units);
+        model.addAttribute("player", player);
+        return "game";
     }
 }

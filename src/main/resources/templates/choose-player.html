@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wybierz gracza</title>
+</head>
+<body>
+<h2>Wybierz gracza</h2>
+
+<form action="/game" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <select name="player">
+        <option value="WHITE">Biały</option>
+        <option value="BLACK">Czarny</option>
+    </select>
+    <button type="submit">Zatwierdź</button>
+</form>
+
+</body>
+</html>
