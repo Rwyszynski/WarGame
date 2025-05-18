@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>War Game</title>
+    <meta charset="UTF-8">
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+        select, input, button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>War Game</h1>
+
+<form method="get" action="/">
+    <label for="player">Wybierz gracza:</label>
+    <select name="player" id="player">
+        <option value="WHITE" th:selected="${player == 'WHITE'}">WHITE</option>
+        <option value="BLACK" th:selected="${player == 'BLACK'}">BLACK</option>
+    </select>
+    <button type="submit">Pokaż jednostki</button>
+</form>
+
+<div th:if="${units != null}">
+    <h2>Jednostki gracza <span th:text="${player}"></span></h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Typ</th>
+            <th>Pozycja</th>
+            <th>Status</th>
+            <th>Ilość ruchów</th>
+        </tr>
+        <tr th:each="unit : ${units}">
+            <td th:text="${unit.id}"></td>
+            <td th:text="${unit.type}"></td>
+            <td>(<span th:text="${unit.x}"></span>, <span th:text="${unit.y}"></span>)</td>
+            <td th:text="${unit.status}"></td>
+            <td th:text="${unit.moveCount}"></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
